@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>
+            Javascript Fundamentos
+        </title>
+    </head>
+    <body>
+        <script type="application/javascript">     
+            //calculo de fechas
+            const nacimiento = new Date(2012,3,11);
+            console.log(nacimiento);
+            const hoy = new Date();
+            console.log(hoy);
+            const tiempo = hoy - nacimiento;
+            console.log(tiempo);
+
+            const proximoCumple = new Date(hoy.getFullYear(),nacimiento.getMonth(),nacimiento.getDay());
+            console.log(proximoCumple);
+
+            const dias = ["domingo","lunes","martes","miercoles","jueves","viernes","sabado"];
+            console.log(dias);
+
+
+        </script>
+    </body>
+    
+
+</html>

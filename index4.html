@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>
+            Javascript Fundamentos
+        </title>
+    </head>
+    <body>
+        <script type="application/javascript">     
+            //pelea entre goku y superman
+            let vidaGoku = 100;
+            let vidaSuperman = 100;
+
+            const MIN_POWER = 5;
+            const MAX_POWER = 12;
+
+            let round = 1;
+
+            const ambosSiguenVivos = () => vidaGoku > 0 && vidaSuperman > 0;
+
+            const calcularGolpe = () => Math.round(Math.random() * (MAX_POWER - MIN_POWER) + MIN_POWER);
+
+            const gokuSigueVivo = () => vidaGoku > 0;
+
+            while(ambosSiguenVivos()) {
+                console.log(`Round ${round}`);
+
+                const golpeGoku = calcularGolpe();
+                const golpeSuperman = calcularGolpe();
+
+                if (golpeGoku > golpeSuperman) {
+                    //atacaGoku();
+                    vidaSuperman -= golpeGoku;
+                    console.log(`Goku ataca a superman con golpe de ${golpeGoku}`);
+                    console.log(`superman queda con ${vidaSuperman} vidas`);
+                }
+                else {
+                    //atacaSuperman();
+                    vidaGoku -= golpeSuperman;
+                    console.log(`superman ataca a goku con golpe de ${golpeSuperman}`);
+                    console.log(`goku queda con ${vidaGoku} vidas`);
+                }                
+                round++;
+            }
+
+            if (gokuSigueVivo()) {
+                console.log(`Goku gano la pelea, su vida es de: ${vidaGoku}`);
+            } else {
+                console.log(`superman gano la pelea, su vida es de: ${vidaSuperman}`);
+            }
+
+
+        </script>
+    </body>
+    
+
+</html>
