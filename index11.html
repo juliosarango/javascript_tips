@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>Fundamentos de javascript</title>
+    </head>
+    <body>
+        <h2>Fundamentos Js</h2>
+        <script type="text/javascript">
+          //arrays
+          //funcion para calcular la suma de varios elementos
+
+          //spred operator: 
+
+          //funcion para sumar
+          function suma(...numeros) { 
+
+              //forma sencilla pero no correcta
+            /*  let acum = 0;
+              for (let i = 0; i < numeros.length; i++) {
+                  acum += numeros[i];
+              }
+              return acum;
+              */
+
+              //forma correcta de hacer
+
+              return numeros.reduce(function (acum,numero){
+                  acum += numero;
+                  return acum;
+              },0)                           
+          }
+
+          //funcion para devolver el doble de los numeros ingresados
+          function dobles(...numeros){
+              //metodo incorrecto
+              /*
+              const resultado = [];
+              for (let i = 0; i < numeros.length; i++) {
+                  resultado.push(numeros[i] * 2);
+              }
+              return resultado;
+              */
+
+              return numeros.map(numero => numero * 2 );
+          }
+
+          //la misma escrita solo con arrow funcion
+          const dobles1 = (...numeros) => numeros.map(numero => numero * 2); 
+
+          //ver los numeros pares de un arrays, manera incorrecta
+          function pares(...numeros) {
+              const resultado = [];
+              const length = numeros.length;
+              for (let i = 0; i < length; i++) {
+                  const numero = numeros[i];
+                  if (numero % 2 == 0) {
+                      resultado.push(numero);
+                  }
+
+              }
+              return resultado;
+          }
+
+          const pares1 = (...numeros) => numeros.filter(numero => numero % 2 == 0 );
+
+        </script>
+    </body>
+</html>
