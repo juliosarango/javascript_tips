@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Fundamentos de javascript</title>
+    </head>
+    <body>
+        <h2>Fundamentos Js</h2>
+        <script type="text/javascript">
+          //scope
+          /*
+          function saludar() {
+              let name = 'Julio';
+              alert(`Hola ${name}`);
+          }
+          saludar();
+          console.log(name); */
+
+          var nombre = 'Julio';
+
+          function saludar() {
+              console.log(nombre);
+          }
+          saludar();//imprime Julio
+
+          //saludar10
+          /*en javascript todas las declaraciones con la palabra var, se suben 
+           a la primera línea de la definición en esta caso de la función.
+          procurar siempre utilizar la definición de variables en el siguiente orden:
+          1. Constantes
+          2. let
+          3. var
+          */
+
+
+          function saludar10(nombre) {
+              //la linea for (var i = 0; i < 10; i++)  es igual a declarar var i fuera del for 
+              for (var i = 0; i < 10; i++) {
+                  console.log(`hola i # ${i}`);
+              }
+              console.log(`El valor de i es ${i}`); //i vale 10
+
+              for (let j = 0; j < 10; j++) {
+                  console.log(`hola j # ${j}`);
+              }
+              console.log(`El valor de j es ${j}`); //j is undefined
+          }
+
+          saludar10('Maria'); //i tiene el valor de 10
+
+
+        </script>
+    </body>
+</html>

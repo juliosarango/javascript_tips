@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <title>Fundamentos de javascript</title>
+    </head>
+    <body>
+        <h2>Fundamentos Js</h2>
+        <script type="text/javascript">
+          //closures          
+          /*
+            El problema es esta implementacion es que se está repidiendo código
+            que hace lo mismo
+          */
+          /*
+          function saludarGomez(nombre) {
+              console.log(`Hola ${nombre} Gomez`);
+          }
+
+          function saludarPerez(nombre) {
+              console.log(`Hola ${nombre} Perez`);
+          }
+
+          saludarGomez('Juan');
+          saludarGomez('Carlos');
+          saludarGomez('Pedro');
+          saludarPerez('Maria');
+          saludarPerez('Andres');
+          */
+
+          /**
+             las funciones internar recuerdan el scope de las variables que le fueron asignadas en la función
+             padre
+          */
+
+          function saludarFamilia(apellido) {
+              return function saludarMiembroDeFamilia(nombre) {
+                  console.log(`Hola ${nombre} ${apellido}`);
+              }
+          }
+
+          const saludarGomez = saludarFamilia('Gomez');
+          console.log(saludarGomez);
+          const saludarPerez = saludarFamilia('Perez');
+          console.log(saludarPerez);
+          const saludarRomero = saludarFamilia('Romero');
+          console.log(saludarRomero);
+
+          saludarGomez('Juan');
+          saludarGomez('Carlos');
+          saludarGomez('Pedro');
+          saludarPerez('Maria');
+          saludarPerez('Andres');
+          saludarRomero('Jorge');
+
+          function makePrefixer(prefix) {   
+            return function hacerPrefijo(palabra) {   
+                console.log(`${prefix}${palabra}`)
+            }
+          }
+
+          const prefix = makePrefixer("re");
+          prefix("bueno");
+          prefix("malo");
+          prefix("alto");
+
+          let prefix1 = (pre) => (palabra) =>  console.log(pre+palabra);
+
+          const p1 = prefix1('re');
+          console.log(p1);
+          p1('bueno');
+          p1('malo');
+
+          
+
+          
+        </script>
+    </body>
+</html>
