@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Fundamentos de javascript</title>
+    </head>
+    <body>
+        <h2>Fundamentos Js</h2>
+        <script type="text/javascript">
+           //objetos con prototipos
+           //loa objetos en js estan basados en prototipos no en clases
+
+           function Punto (x,y) {
+               this.x = x;
+               this.y = y;
+           }
+
+           Punto.prototype.moverEnX = function moverEnX(x) {
+               this.x += x;
+           }
+
+           Punto.prototype.moverEnY = function moverEnY(y) {
+               this.y += y;
+           }
+
+           Punto.prototype.distancia = function distancia(p) {
+               const x = this.x - p.x;
+               const y = this.y - p.y;
+
+               return Math.sqrt(x*x + y*y);
+           }
+
+
+           const p1 = new Punto(0,4);
+
+           const p2 = new Punto(3,0);
+
+           console.log("saludos a todos");
+
+           console.log(p1);
+
+           console.log(p1.distancia(p2));
+           console.log(p2.distancia(p1));
+
+           p1.moverEnX(10);
+           p1.moverEnY(-30);
+           p2.moverEnX(20);
+           console.log(p1.distancia(p2).toFixed(2));
+
+           console.log(p1.distancia({x:23,y:43}).toFixed(3));
+
+        </script>
+    </body>
+</html>
