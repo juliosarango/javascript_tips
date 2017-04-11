@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Fundamentos de javascript</title>
+    </head>
+    <body>
+        <h2>this, _this y arrow functions</h2>
+        <script type="text/javascript">
+        class Persona {
+            constructor(nombre, amigos = []) {
+                this.nombre = nombre;
+                this.amigos = amigos;
+                //this.amigos = amigos || [] es otra forma de asignar si en el parámetro
+                //se hubiera pasado amigos sin valor por defecto constructor(nombre, amigos)
+            }
+
+            //primera forma
+            listarAmigos() {
+                //en este scope, no podemos acceder a this, ya que this estará haciendo referencia al scope
+                //de la función. Si queremos acceder al scope de toda la clase primero debemos acceder al scope global                    
+                const _this = this; ///muchos desarrolladores la escriben como: const self = this;
+                this.amigos.forEach(function(amigo){                    
+                    
+                    console.log(`hola soy ${_this.nombre} y soy amigo de ${amigo}`)
+                })
+            }            
+
+            //segunda forma: invocamos al metodo bind() para indicar a la funcion el scope al cual acceder
+            listarAmigos1() {
+                this.amigos.forEach(function(amigo){
+                    console.log(`hola soy ${this.nombre} y soy amigo de ${amigo}`)
+                }.bind(this));//este this indica que el this.nombre va a ser el this de fuera de la función
+            }
+
+            //tercera forma: con arrow function
+            //Cuando utilizamos arrow function, el this interno de la funcion va a tomar el valor del contexto externo de la funcion,
+            //ya no es necesario hacer _this = this ni llamar al metodo bind()
+            listarAmigos2() {
+                this.amigos.forEach( amigo => console.log(`hola soy ${this.nombre} y soy amigo de ${amigo}`))
+            }
+        }
+
+        const julio = new Persona("Julio",["Juan","Maria","Carlos","Isabel"]);
+        julio.listarAmigos();
+        julio.listarAmigos1();
+        julio.listarAmigos2();
+        
+          
+
+          
+
+          
+        </script>
+    </body>
+</html>

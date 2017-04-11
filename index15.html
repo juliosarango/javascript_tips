@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Fundamentos de javascript</title>
+        <style>
+           * {
+               font-size: 14px;
+           }
+        </style>
+    </head>
+    <body>
+        <h2>bind, call, apply</h2>
+        <button id="boton">Off </button>
+        <script type="text/javascript">
+           class Toggable {
+               constructor(el) {
+                   this.el = el;
+                   this.el.innerHTML = 'Off';
+                   this.activated = false;
+                   this.el.addEventListener('click',this.onClick.bind(this))
+               }
+
+               onClick() {
+                   this.activated = !this.activated;
+                   this.toggleText();
+               }
+
+               toggleText() {
+                   this.el.innerHTML = this.activated ? 'On':'Off';
+               }
+
+           }
+
+           const button = document.getElementById('boton');
+           const miBoton = new Toggable(button);
+          
+        </script>
+    </body>
+</html>
