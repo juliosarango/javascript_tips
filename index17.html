@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>Fundamentos de javascript</title>        
+    </head>
+    <body>
+        <h2>Pila de llamadas</h2>        
+        <script type="text/javascript">
+        /**
+         explicacion de la pila de ejecucion https://goo.gl/JZ5iA7
+        */
+
+            
+            //siempre que existan setTimeout, esta se pasa a una cola de tareas y continua ejecutando en el orden que vaya 
+            //apareciendo el código.
+            //resultado de la ejecucion: hola!, Adios, medio...
+            
+            /*
+            console.log('Hola!')
+
+            setTimeout(function() {
+                console.log('medio...')
+            }, 10)
+
+            setTimeout(function(){console.log('segundo medio...')},0)
+
+
+            for (let i=0; i< 100; i++) {
+            console.log('Adios')
+            }*/
+
+            /**
+            Otro ejemplo
+            */
+
+            setTimeout( () => console.log('A'),1000 );
+
+            for (let i=0; i < 9999; i++) {
+                console.log('B');
+            }
+            
+        
+
+
+
+          
+        </script>
+    </body>
+</html>

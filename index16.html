@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Fundamentos de javascript</title>
+        <style>
+           * {
+               font-size: 14px;
+           }
+        </style>
+    </head>
+    <body>
+        <h2>call, apply</h2>        
+        <script type="text/javascript">
+        /**
+         Metodo bind(): Es un método de todas las funciones, el cual nos devuelve una función para ser invocada en cualquier momento. 
+         Se caracteriza por permitirnos definir el scope-contexto y por permitir establecer previamente los parametros
+         
+        const newFunction = fun.bind(contexto, primerParametro)// Establece el scope y el-los parametros de fun
+        newFunction(segundoParametro) // Ejecuta fun pero con la caracteristica de que ya esta establecido el scope y los parametros. 
+                                        Igualmente nos permite enviarle más parametros a fun si es el caso
+        
+        -Métodos call() y apply(): A diferencia de bidn(), call() y apply() ejecutan la función “padre” instantaneamente. 
+                                   De igual forma nos permiten establecer el scope y los parametros con la pequeña diferencia de que apply, 
+                                   recibe los parametros en un array.
+
+        fun.call(contexto, primerParametro, segundoParametro)//Ejecuta fun en el scope establecido y con los parametros enviados
+
+        fun.apply(contexto, [primerParametro, segundoParametro)//Ejecuta fun en el scope establecido y con los parametros enviados en el array
+
+        */
+
+        const persona = {
+            nombre: 'Julio',
+            apellido: 'Sarango'
+        } 
+        function saludar(n, uppercase) {
+            let str = `Hola ${this.nombre} ${this.apellido}`;
+            str = uppercase ? str.toUpperCase() : str;
+            for (let i = 0; i < n; i++) {
+                console.log(str);
+            }
+        }
+        saludar(4,true); // error x q el scope this no conoce las propiedades nombre y apellido, resultado: Hola undefined undefined
+        saludar.call(persona,4,true); //le indicamos que persona es el this
+        const params = [10,false];
+        saludar.call(persona,...params);
+        saludar.apply(persona,[6,true]);
+        saludar.apply(persona,[5]);
+
+
+
+          
+        </script>
+    </body>
+</html>

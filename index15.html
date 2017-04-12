@@ -16,7 +16,7 @@
                    this.el = el;
                    this.el.innerHTML = 'Off';
                    this.activated = false;
-                   this.el.addEventListener('click',this.onClick.bind(this))
+                   this.el.addEventListener('click',this.onClick.bind(this)) //es necesario hacer el bind en este caso
                }
 
                onClick() {
@@ -32,6 +32,35 @@
 
            const button = document.getElementById('boton');
            const miBoton = new Toggable(button);
+
+           //otra forma de hacer bind en argumentos de paramatros
+           function saludar(nombre, apellido) {
+               console.log(`Hola ${nombre} ${apellido}`);
+           }
+
+           saludar("Julio","Sarango");
+
+           const saludarJulio = saludar.bind(null,"Julio");
+           //la funcion bind devuelve otra funcion con el primer parámetro seteado
+           console.log(saludarJulio);
+           saludarJulio("Sarango"); //solo debemos enviar el segundo parámetro
+           saludarJulio("Ramos"); //solo debemos enviar el segundo parámetro
+
+           ///////
+           var fn = function(param1, param2) {
+               console.info(this,param1,param2);
+           }
+
+           fn('hola','mundo');
+
+           var fn2 = fn.bind(console,'param1Fixed');
+           fn2('adios','mundo cruel');
+
+           var fn3 = fn.bind({},'Julio Aurelio');
+           fn3('tercera','llamada');
+
+
+
           
         </script>
     </body>

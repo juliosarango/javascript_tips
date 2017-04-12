@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Fundamentos de javascript</title>        
+    </head>
+    <body>
+        <h2>Callback a servidor externo</h2>        
+        <script type="text/javascript">
+            function get(URL,callback){
+                const xhr = new XMLHttpRequest();
+
+                xhr.onreadystatechange = function() {
+                    const DONE = 4;
+                    const OK = 200;
+                    if (this.readyState === DONE) {
+                        if (this.status === OK) {
+                            //exito
+                            callback(null,JSON.parse(this.responseText));
+                        }
+                        else {
+                            //error
+                            callback(new Error(`Error al realizar el request: ${this.status}`))
+                        }
+                    }
+                }
+                xhr.open('GET',URL);
+                xhr.send(null);
+            }
+
+            function handleError(err){
+                console.log(`Request failed: ${err}`)
+            }
+
+
+            get('http://swapi.co/api/planets/1/',function(err,luke){
+                if (err){
+                    return handleError(err);
+                }
+                console.log('request success')
+                console.log('luke',luke);
+                get(luke.homeworld, function onHomeWorldResponse (err, homeworld){
+                    if (err) return handleError(err)
+
+                    luke.homeworld = homeworld;
+                    console.log(`${luke.name} nació en ${luke.homeworld.name}`)
+                } )
+            })
+          
+        </script>
+    </body>
+</html>
