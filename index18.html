@@ -5,6 +5,7 @@
     <body>
         <h2>Callback a servidor externo</h2>        
         <script type="text/javascript">
+
             function get(URL,callback){
                 const xhr = new XMLHttpRequest();
 
@@ -31,7 +32,7 @@
             }
 
 
-            get('http://swapi.co/api/planets/1/',function(err,luke){
+            get('http://swapi.co/api/people/1/',function(err,luke){
                 if (err){
                     return handleError(err);
                 }

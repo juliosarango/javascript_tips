@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Fundamentos de javascript</title>        
+    </head>
+    <body>
+        <h2>Funciones recursivas</h2>        
+        <script type="text/javascript">
+        /*
+        hay q tener mucho cuidado al implementar las funciones recursivas, se debe implementar
+        los casos bases, caso contrario se tornará en un ciclo infinito. La funcion llenará todo el stack de ejecucion
+        en este caso los casos bases son :
+        if (num == 1) return 0
+        if (num == 2) return 1
+        
+        */
+            let contador=0;
+            function fibonacci(num) {
+                console.log(contador++);
+                if (num == 1) return 0
+                if (num == 2) return 1
+
+                return fibonacci(num-1)+ fibonacci(num-2);
+            }
+            /*console.log(fibonacci(1));
+            console.log(fibonacci(2));
+            console.log(fibonacci(3));
+            console.log(fibonacci(4));
+            console.log(fibonacci(5));
+            console.log(fibonacci(6));
+            console.log(fibonacci(7));
+            console.log(fibonacci(8));
+            console.log(fibonacci(9));*/
+            console.log(fibonacci(20));
+        </script>
+    </body>
+</html>

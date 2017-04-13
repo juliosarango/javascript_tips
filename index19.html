@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>Fundamentos de javascript</title>        
+    </head>
+    <body>
+        <h2>Promesas</h2>        
+        <script type="text/javascript">
+            /*
+            las Promesas tienen 3 estados:
+            1. Pending
+            2. Fullfiled: Se completó correctamente
+            3. Rejected: Se produjo un error y no se pudo completar
+            */
+
+            function get(URL){                
+                return new Promise((resolve,reject) => {
+                    const xhr = new XMLHttpRequest();
+
+                    xhr.onreadystatechange = function() {
+                        const DONE = 4;
+                        const OK = 200;
+                        if (this.readyState === DONE) {
+                            if (this.status === OK) {
+                                console.log(this.responseText);
+                                resolve(JSON.parse(this.responseText));
+                            } else {
+                                reject(new Error(`Se produjo un error: ${this.status}`))
+                            }
+                        }
+                    }
+                    xhr.open('GET',URL);
+                    xhr.send(null);
+                })            
+                }                            
+
+            function handleError(err){
+                console.log(`Request failed: ${err}`)
+            }
+
+            let luke
+            get ('http://swapi.co/api/people/1/')
+               .then( response => {
+                   luke = response
+                   return get(luke.homeworld)
+               })
+               .then( homeworld => {
+                   luke.homeworld = homeworld;
+                   console.log(`${luke.name} nació en ${luke.homeworld.name}`);
+               })
+               .catch ( err => handleError(err))
+
+            //otra forma utilizando fetch
+
+            fetch('http://swapi.co/api/people/1/')
+                .then(response => response.json())
+                .then( json => {
+                    luke = json;
+                    return fetch(luke.homeworld)
+                }) 
+                .then( response => response.json())
+                .then(json => {
+                    luke.homeworld = json;
+                    console.log(`${luke.name} nació en ${luke.homeworld.name}`);
+                })
+                .catch( err => handleError(err))
+
+          
+        </script>
+    </body>
+</html>
