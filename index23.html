@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>Fundamentos de javascript</title>        
+    </head>
+    <body>
+        <h2>Iteradores</h2>        
+        <script type="text/javascript">
+        /*
+        Aquí lo que se tiene son closures que recuerdan el valor de las variables, la funciónn fibonacci devuelve otra función        
+        Para los iteradores podemos obtener lo siguiente:
+
+        next() - iterará los datos
+        value - nos devolverá el valor del dato
+        done - será un indicador para cuando la lista se haya terminado
+        */            
+            function fibonacci() {
+                let a = 0, b = 1;
+                return {
+                    next: function() {
+                        let f = a;
+                        a = b;
+                        b = f + a;                        
+                        return { value: f, done:false }
+                    }
+                }
+            }
+
+            //llamada automática con for
+            const fibo = {};
+            fibo[Symbol.iterator] = fibonacci;
+            console.log(fibo);
+            let i = 0;
+            for (let value of fibo) {               
+                console.log(value);                
+                i++;
+                if ( i > 20 ) break;                
+            }
+
+            
+            //llamada manual
+           /* const fibo1 = fibonacci();
+            console.log(fibo1.next().value) //0
+            console.log(fibo1.next());
+            console.log(fibo1.next().value) //1
+            fibo1.next().value //1
+            fibo1.next().value //2
+            fibo1.next().value //3
+            fibo1.next().value //5
+            fibo1.next().value //8
+            fibo1.next().value //13
+            fibo1.next().value //21
+            fibo1.next().value //34
+            console.log(fibo1.next());
+            console.log(fibo1);
+            fibo1.next().value //55
+            fibo1.next().value //89
+            */
+            
+        </script>
+    </body>
+</html>
